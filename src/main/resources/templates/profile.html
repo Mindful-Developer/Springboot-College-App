@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header('Student Profile')}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Profile Information</h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/profile/update}" th:object="${student}" method="post">
+                        <input type="hidden" th:field="*{studentId}">
+                        <input type="hidden" th:field="*{userName}">
+                        <input type="hidden" th:field="*{password}">
+
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" th:field="*{firstName}" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" th:field="*{lastName}" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control" th:field="*{address}" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-control" th:field="*{city}" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Postal Code</label>
+                            <input type="text" class="form-control" th:field="*{postalCode}" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Technical Skills</label>
+                            <textarea class="form-control" th:field="*{technicalSkills}" rows="3"></textarea>
+                            <div class="text-danger" th:if="${#fields.hasErrors('technicalSkills')}" th:errors="*{technicalSkills}"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>My Enrollments</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Application #</th>
+                                <th>Program</th>
+                                <th>Start Date</th>
+                                <th>Amount Paid</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="enrollment : ${enrollments}">
+                                <td th:text="${enrollment.applicationNo}"></td>
+                                <td th:text="${enrollment.program.programName}"></td>
+                                <td th:text="${#temporals.format(enrollment.startDate, 'MMM d, yyyy')}"></td>
+                                <td th:text="'$' + ${enrollment.amountPaid}"></td>
+                                <td><span class="badge bg-success">Active</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

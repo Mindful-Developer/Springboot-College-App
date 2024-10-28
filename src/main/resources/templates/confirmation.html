@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header('Enrollment Confirmation')}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<div class="container mt-5">
+    <div class="confirmation-container">
+        <div class="confirmation-icon">✓</div>
+        <h2>Enrollment Successful!</h2>
+        <p class="lead">Thank you for enrolling in our program.</p>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>Enrollment Details</h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Application Number:</strong> <span th:text="${enrollment.applicationNo}"></span></p>
+                <p><strong>Program:</strong> <span th:text="${enrollment.program.programName}"></span></p>
+                <p><strong>Start Date:</strong> <span th:text="${#temporals.format(enrollment.startDate, 'MMMM d, yyyy')}"></span></p>
+                <p><strong>Amount Paid:</strong> $<span th:text="${enrollment.amountPaid}"></span></p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <p>You will receive a confirmation email shortly with additional information.</p>
+            <a href="/programs" class="btn btn-primary">Return to Programs</a>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header('Error')}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<div class="container">
+    <div class="alert alert-danger text-center mt-5">
+        <h2>Oops! Something went wrong</h2>
+        <p th:text="${message ?: 'An error occurred.'}" class="mb-3"></p>
+        <div class="mt-4">
+            <a href="/" class="btn btn-primary me-2">Return Home</a>
+            <button onclick="history.back()" class="btn btn-secondary">Go Back</button>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div style="display: none;">
+    <form th:object="${student != null ? student : new com.busse.chrisbusse_comp303_assignement2.model.Student()}">
+    </form>
+</div>
+
+</body>
+</html>

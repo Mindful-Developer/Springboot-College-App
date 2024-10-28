@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header('Welcome to Student Enrollment')}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<section class="hero-section py-5 text-center text-white">
+    <div class="container">
+        <h1 class="display-3 mb-4">Welcome to Millennial College</h1>
+        <p class="lead mb-4">Innovation is the future</p>
+        <div class="d-flex justify-content-center gap-3">
+            <button th:if="${session.student == null}" class="btn btn-primary btn-lg" id="getStartedBtn">
+                Get Started
+            </button>
+            <a th:if="${session.student}" href="/programs" class="btn btn-primary btn-lg">
+                View Programs
+            </a>
+            <a href="#programs" class="btn btn-outline-light btn-lg">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<section id="programs" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Featured Programs</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Software Engineering Technology</h5>
+                        <p class="card-text">Software is taking the planet by storm and Centennial College's Software Engineering Technology program will provide you with three years of learning in designing, developing and maintaining software systems.</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Full Stack Development</li>
+                            <li>✓ Cloud Computing</li>
+                            <li>✓ Agile Methodologies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Game Development</h5>
+                        <p class="card-text">With training from Centennial College's Game – Programming advanced diploma, you'll gain a unique blend of skills that combines the core concepts of software engineering with specialized knowledge in game programming. Upon graduation, you'll receive an advanced diploma and have the know-how to launch a career in the game software industry.</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Game Design</li>
+                            <li>✓ 3D Modeling</li>
+                            <li>✓ Game Engine Development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Artificial Intelligence</h5>
+                        <p class="card-text">Through collaboration with industry, the Software Engineering Technology – Artificial Intelligence (AI) program will provide our students with skills in state-of-art design and AI application development technologies. Software is taking the planet by storm and AI-driven technologies are at the center of it. AI’s global economic impact is expected to reach trillions by 2025. AI is set to become the new database for next-generation applications.</p>
+                        <ul class="list-unstyled">
+                            <li>✓ Machine Learning</li>
+                            <li>✓ Neural Networks</li>
+                            <li>✓ Data Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:replace="~{fragments/header :: dialog-scripts}"></script>
+
+<script>
+    document.getElementById('getStartedBtn')?.addEventListener('click', () => {
+        document.getElementById('registerDialog').showModal();
+    });
+</script>
+</body>
+</html>
